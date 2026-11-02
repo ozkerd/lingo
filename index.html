@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Linko — Word Studio Duel</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Linko" />
+  <link rel="apple-touch-icon" href="./store-assets/app-icon-1024x1024.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <script src="./vendor/peerjs.min.js"></script>
+  <script type="module" src="./assets/index-YmIyf9WQ.js"></script>
+  <link rel="stylesheet" href="./assets/index-fcjtVXu0.css">
+</head>
+<body>
+  <div id="app-shell">
+    <!-- Minimalist Header -->
+    <header class="top-bar">
+      <div class="brand-logo" id="btn-logo-home" title="Main Menu">
+        <span class="logo-tile green">L</span>
+        <span class="logo-tile amber">I</span>
+        <span class="logo-tile green">N</span>
+        <span class="logo-tile neutral">K</span>
+        <span class="logo-tile green">O</span>
+        <span class="brand-sub" id="brand-subtitle">WORD ARENA</span>
+      </div>
+
+      <div class="top-actions">
+        <button id="btn-pro-badge" class="pro-pill" type="button">
+          ✨ Full Game
+        </button>
+        <button id="btn-sound-toggle" class="icon-btn" type="button" aria-label="Sound">
+          🔊
+        </button>
+        <button id="btn-leave-game" class="icon-btn hidden" type="button" aria-label="Leave">
+          ✕
+        </button>
+      </div>
+    </header>
+
+    <!-- 1. HOME / SETUP SCREEN -->
+    <main id="home-screen" class="screen-container">
+      <section class="setup-card">
+        <div class="logo-hero">
+          <h1 id="ui-welcome-title">Linko Word Studio</h1>
+          <p id="ui-welcome-desc">5 & 6-letter words, 5 attempts, opponent steal turns, and the Grand Finale clue word.</p>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="field-group">
+          <label class="field-label" id="lbl-language">Language / Oyun Dili</label>
+          <div class="segmented-control">
+            <button type="button" id="lang-en" class="seg-btn active" data-lang="en">
+              🇬🇧 English
+            </button>
+            <button type="button" id="lang-tr" class="seg-btn" data-lang="tr">
+              🇹🇷 Türkçe
+            </button>
+          </div>
+        </div>
+
+        <!-- Player Name -->
+        <div class="field-group">
+          <label class="field-label" for="input-player-name" id="lbl-player-name">Your Contestant Name</label>
+          <input
+            id="input-player-name"
+            type="text"
+            class="text-input"
+            maxlength="14"
+            placeholder="e.g. Alex"
+            value="Player 1"
+          />
+        </div>
+
+        <!-- AI Difficulty Selector (Easy / Medium / Hard) -->
+        <div class="field-group">
+          <label class="field-label" id="lbl-ai-difficulty">Computer Difficulty Level</label>
+          <div class="segmented-control three-cols">
+            <button type="button" id="diff-easy" class="seg-btn" data-diff="easy">
+              Easy
+            </button>
+            <button type="button" id="diff-medium" class="seg-btn active" data-diff="medium">
+              Medium (Human)
+            </button>
+            <button type="button" id="diff-hard" class="seg-btn" data-diff="hard">
+              Hard
+            </button>
+          </div>
+        </div>
+
+        <!-- Primary Action: Play 1v1 vs Computer -->
+        <div class="action-stack">
+          <button type="button" id="btn-start-ai" class="primary-btn">
+            Play 1v1 vs Computer
+          </button>
+
+          <div class="divider-row">
+            <span id="lbl-multiplayer-or">or Play with Friends (Share Game ID up to 3 Players)</span>
+          </div>
+
+          <div class="multiplayer-grid">
+            <button type="button" id="btn-create-room" class="secondary-btn">
+              Create Room (Game ID)
+            </button>
+            <div class="join-box">
+              <input
+                id="input-room-code"
+                type="text"
+                class="code-input"
+                maxlength="6"
+                placeholder="GAME ID"
+              />
+              <button type="button" id="btn-join-room" class="join-btn">
+                Join
+              </button>
+            </div>
+          </div>
+
+          <div class="legal-footer-links">
+            <a href="./privacy.html" target="_blank" rel="noopener" id="lnk-privacy">Privacy Policy</a>
+            <span>•</span>
+            <a href="./support.html" target="_blank" rel="noopener" id="lnk-support">Support & Help</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 2. MULTIPLAYER LOBBY SCREEN -->
+    <main id="lobby-screen" class="screen-container hidden">
+      <section class="setup-card">
+        <h2 id="ui-lobby-title" class="card-title">Multiplayer Lobby</h2>
+        <p id="ui-lobby-subtitle" class="card-subtitle">
+          Share this Game ID code with your friends (Up to 3 contestants):
+        </p>
+
+        <div class="game-id-banner">
+          <div class="game-id-code" id="lobby-room-code">------</div>
+          <button type="button" id="btn-copy-room" class="copy-pill">
+            Copy
+          </button>
+        </div>
+
+        <div class="lobby-slots" id="lobby-player-list">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="lobby-actions">
+          <button type="button" id="btn-lobby-start" class="primary-btn">
+            Start Match
+          </button>
+          <button type="button" id="btn-lobby-cancel" class="ghost-btn">
+            Back to Menu
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- 3. FOCUSED GAME SCREEN -->
+    <main id="game-screen" class="game-layout hidden">
+      <!-- Compact Stage + Timer Strip -->
+      <div class="stage-bar">
+        <div class="stage-info">
+          <span id="ui-stage-pill" class="stage-pill">STAGE 1 • 5 LETTERS</span>
+          <span id="ui-room-pill" class="room-pill hidden">ROOM: ------</span>
+        </div>
+        <div class="timer-pill" id="ui-timer-pill">
+          <span id="ui-timer-val">25</span>s
+        </div>
+      </div>
+
+      <!-- Contestant Podium Strip (1v1 vs AI or up to 3 in Multiplayer) -->
+      <section class="podium-strip" id="podium-strip">
+        <!-- Populated dynamically -->
+      </section>
+
+      <!-- Final Round Clue Question Card (Only shown in Stage 3: Grand Finale) -->
+      <section id="final-clue-card" class="clue-card hidden">
+        <div class="clue-badge" id="ui-clue-badge">🌟 GRAND FINALE CLUE QUESTION (+400 PTS)</div>
+        <p id="ui-clue-text" class="clue-text"></p>
+      </section>
+
+      <!-- Status Banner (Clean single-line feedback) -->
+      <div id="ui-status-banner" class="status-banner">
+        Match starting...
+      </div>
+
+      <!-- Word Board -->
+      <section class="board-wrapper">
+        <div id="lingo-grid" class="lingo-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+      <!-- Quick Controls Bar (Hint + Freeze Timer + Submit) -->
+      <div class="controls-bar">
+        <button type="button" id="btn-hint-letter" class="tool-btn">
+          💡 +1 Hint
+        </button>
+        <button type="button" id="btn-freeze-timer" class="tool-btn freeze-btn">
+          ⏸️ Got It! (+10s)
+        </button>
+        <button type="button" id="btn-submit-guess" class="submit-word-btn">
+          Submit ↵
+        </button>
+      </div>
+
+      <!-- Focused On-Screen Keyboard (TR / EN) -->
+      <section id="virtual-keyboard" class="keyboard-section">
+        <!-- Populated dynamically -->
+      </section>
+    </main>
+
+
+    <!-- 5. FULL VERSION / LINKO PRO MODAL -->
+    <div id="pro-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <span class="modal-tag pro-tag" id="pro-modal-tag">LINKO PRO • FULL GAME</span>
+        <h3 id="pro-modal-title" class="modal-title">Unlimited Ad-Free Linko</h3>
+        <p id="pro-modal-desc" class="modal-desc">
+          Unlock all features forever: zero ads between rounds, unlimited 3-player Game ID matches, and free +1 letter hint every round.
+        </p>
+
+        <ul class="pro-feature-list" id="pro-feature-list">
+          <li>✓ Zero ads between rounds and matches</li>
+          <li>✓ Unlimited 3-player Game ID rooms & matches</li>
+          <li>✓ Free +1 letter hint on every word</li>
+        </ul>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-buy-pro" class="primary-btn">
+            Unlock Full Game — $1.99
+          </button>
+          <button type="button" id="btn-watch-ad-instead" class="secondary-btn">
+            📺 Watch Short Ad to Continue Free
+          </button>
+          <button type="button" id="btn-restore-pro" class="ghost-btn">
+            Restore Purchases
+          </button>
+          <button type="button" id="btn-close-pro" class="ghost-btn">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. FINAL RESULTS MODAL -->
+    <div id="results-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <span class="modal-tag" id="results-tag">MATCH RESULTS</span>
+        <h3 id="results-winner-title" class="modal-title">Champion Crowned!</h3>
+        <div id="results-standings" class="standings-list">
+          <!-- Populated dynamically -->
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="btn-play-again" class="primary-btn">
+            Play Again
+          </button>
+          <button type="button" id="btn-results-home" class="ghost-btn">
+            Main Menu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. OFFLINE / CONNECTION REQUIRED BLOCKER MODAL -->
+    <div id="offline-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <span class="modal-tag pro-tag" id="offline-modal-tag">CONNECTION REQUIRED</span>
+        <h3 id="offline-modal-title" class="modal-title">📡 No Internet Connection</h3>
+        <p id="offline-modal-desc" class="modal-desc">
+          An active internet connection is required to play and load ads. Please enable Wi-Fi or mobile data to continue.
+        </p>
+        <div class="modal-actions">
+          <button type="button" id="btn-retry-online" class="primary-btn">
+            🔄 Check Connection & Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
