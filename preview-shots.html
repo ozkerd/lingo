@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Linko Screenshot Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/index-fcjtVXu0.css">
+</head>
+<body>
+  <div id="app-shell">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="brand-logo">
+        <span class="logo-tile green">L</span>
+        <span class="logo-tile amber">I</span>
+        <span class="logo-tile green">N</span>
+        <span class="logo-tile neutral">K</span>
+        <span class="logo-tile green">O</span>
+        <span class="brand-sub">WORD ARENA</span>
+      </div>
+
+      <div class="top-actions">
+        <button class="pro-pill" type="button">✨ Pro Studio</button>
+        <button class="icon-btn" type="button">🔊</button>
+      </div>
+    </header>
+
+    <!-- CONTAINER 1: GAMEPLAY -->
+    <main id="view-gameplay" class="screen-container">
+      <div class="game-meta-bar">
+        <div class="stage-info">
+          <span class="stage-pill">STAGE 1 / 3: 5 LETTERS</span>
+        </div>
+        <div class="timer-pill">⏱ 18s</div>
+      </div>
+
+      <div class="podium-strip">
+        <div class="podium-card active-turn">
+          <div class="podium-name-wrap">
+            <span class="podium-name">Alex (You)</span>
+            <span class="podium-role">ACTIVE TURN</span>
+          </div>
+          <span class="podium-score">250 Pts</span>
+        </div>
+        <div class="podium-card">
+          <div class="podium-name-wrap">
+            <span class="podium-name">Maya (AI)</span>
+            <span class="podium-role">CONTESTANT</span>
+          </div>
+          <span class="podium-score">100 Pts</span>
+        </div>
+      </div>
+
+      <div class="status-banner">🎯 Guess 3: 4 letters locked in place!</div>
+
+      <div class="board-wrapper">
+        <div class="lingo-grid">
+          <!-- Row 1 -->
+          <div class="lingo-row" style="grid-template-columns: repeat(5, 1fr);">
+            <div class="lingo-tile tile-correct">P</div>
+            <div class="lingo-tile tile-present">L</div>
+            <div class="lingo-tile tile-absent">A</div>
+            <div class="lingo-tile tile-absent">N</div>
+            <div class="lingo-tile tile-absent">T</div>
+          </div>
+          <!-- Row 2 -->
+          <div class="lingo-row" style="grid-template-columns: repeat(5, 1fr);">
+            <div class="lingo-tile tile-correct">P</div>
+            <div class="lingo-tile tile-absent">O</div>
+            <div class="lingo-tile tile-absent">U</div>
+            <div class="lingo-tile tile-absent">N</div>
+            <div class="lingo-tile tile-absent">D</div>
+          </div>
+          <!-- Row 3 -->
+          <div class="lingo-row" style="grid-template-columns: repeat(5, 1fr);">
+            <div class="lingo-tile tile-correct">P</div>
+            <div class="lingo-tile tile-absent">I</div>
+            <div class="lingo-tile tile-correct">L</div>
+            <div class="lingo-tile tile-present">O</div>
+            <div class="lingo-tile tile-absent">T</div>
+          </div>
+          <!-- Row 4 -->
+          <div class="lingo-row" style="grid-template-columns: repeat(5, 1fr);">
+            <div class="lingo-tile tile-correct">P</div>
+            <div class="lingo-tile tile-correct">O</div>
+            <div class="lingo-tile tile-correct">L</div>
+            <div class="lingo-tile tile-absent">A</div>
+            <div class="lingo-tile tile-correct">R</div>
+          </div>
+          <!-- Row 5 (Active typing) -->
+          <div class="lingo-row" style="grid-template-columns: repeat(5, 1fr);">
+            <div class="lingo-tile tile-correct">P</div>
+            <div class="lingo-tile tile-correct">O</div>
+            <div class="lingo-tile tile-correct">L</div>
+            <div class="lingo-tile active-cursor">I</div>
+            <div class="lingo-tile tile-correct">S</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyboard -->
+      <div id="virtual-keyboard">
+        <div class="kb-row">
+          <button class="key-btn key-absent">Q</button>
+          <button class="key-btn">W</button>
+          <button class="key-btn">E</button>
+          <button class="key-btn key-correct">R</button>
+          <button class="key-btn key-absent">T</button>
+          <button class="key-btn">Y</button>
+          <button class="key-btn key-absent">U</button>
+          <button class="key-btn">I</button>
+          <button class="key-btn key-correct">O</button>
+          <button class="key-btn key-correct">P</button>
+        </div>
+        <div class="kb-row">
+          <button class="key-btn key-absent">A</button>
+          <button class="key-btn key-correct">S</button>
+          <button class="key-btn key-absent">D</button>
+          <button class="key-btn">F</button>
+          <button class="key-btn">G</button>
+          <button class="key-btn">H</button>
+          <button class="key-btn">J</button>
+          <button class="key-btn">K</button>
+          <button class="key-btn key-correct">L</button>
+        </div>
+        <div class="kb-row">
+          <button class="key-btn key-wide key-enter">ENTER</button>
+          <button class="key-btn">Z</button>
+          <button class="key-btn">X</button>
+          <button class="key-btn">C</button>
+          <button class="key-btn">V</button>
+          <button class="key-btn">B</button>
+          <button class="key-btn key-absent">N</button>
+          <button class="key-btn">M</button>
+          <button class="key-btn key-wide key-backspace">⌫</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- CONTAINER 2: MULTIPLAYER STEAL -->
+    <main id="view-multiplayer" class="screen-container hidden">
+      <div class="game-meta-bar">
+        <div class="stage-info">
+          <span class="stage-pill">STAGE 2 / 3: 6 LETTERS</span>
+          <span class="room-pill">ROOM #4892</span>
+        </div>
+        <div class="timer-pill urgent">⏱ 9s</div>
+      </div>
+
+      <div class="podium-strip">
+        <div class="podium-card steal-turn">
+          <div class="podium-name-wrap">
+            <span class="podium-name">Sarah (Guest)</span>
+            <span class="podium-role">⚡ STEAL TURN</span>
+          </div>
+          <span class="podium-score">450 Pts</span>
+        </div>
+        <div class="podium-card">
+          <div class="podium-name-wrap">
+            <span class="podium-name">Alex (Host)</span>
+            <span class="podium-role">CONTESTANT</span>
+          </div>
+          <span class="podium-score">350 Pts</span>
+        </div>
+      </div>
+
+      <div class="status-banner banner-reveal">⚡ Steal Chance! Guess to claim 100 Bonus Pts</div>
+
+      <div class="board-wrapper">
+        <div class="lingo-grid">
+          <div class="lingo-row" style="grid-template-columns: repeat(6, 1fr);">
+            <div class="lingo-tile tile-correct">S</div>
+            <div class="lingo-tile tile-absent">P</div>
+            <div class="lingo-tile tile-correct">R</div>
+            <div class="lingo-tile tile-present">I</div>
+            <div class="lingo-tile tile-absent">N</div>
+            <div class="lingo-tile tile-absent">G</div>
+          </div>
+          <div class="lingo-row" style="grid-template-columns: repeat(6, 1fr);">
+            <div class="lingo-tile tile-correct">S</div>
+            <div class="lingo-tile tile-absent">E</div>
+            <div class="lingo-tile tile-correct">R</div>
+            <div class="lingo-tile tile-correct">I</div>
+            <div class="lingo-tile tile-absent">E</div>
+            <div class="lingo-tile tile-absent">S</div>
+          </div>
+          <div class="lingo-row" style="grid-template-columns: repeat(6, 1fr);">
+            <div class="lingo-tile tile-correct">S</div>
+            <div class="lingo-tile tile-absent">T</div>
+            <div class="lingo-tile tile-correct">R</div>
+            <div class="lingo-tile tile-correct">I</div>
+            <div class="lingo-tile tile-correct">K</div>
+            <div class="lingo-tile tile-correct">E</div>
+          </div>
+          <div class="lingo-row steal-row" style="grid-template-columns: repeat(6, 1fr);">
+            <div class="lingo-tile tile-correct">S</div>
+            <div class="lingo-tile tile-correct">H</div>
+            <div class="lingo-tile tile-correct">R</div>
+            <div class="lingo-tile tile-correct">I</div>
+            <div class="lingo-tile tile-correct">E</div>
+            <div class="lingo-tile tile-correct">K</div>
+          </div>
+          <div class="lingo-row" style="grid-template-columns: repeat(6, 1fr);">
+            <div class="lingo-tile tile-hint">S</div>
+            <div class="lingo-tile tile-hint">_</div>
+            <div class="lingo-tile tile-hint">R</div>
+            <div class="lingo-tile tile-hint">I</div>
+            <div class="lingo-tile tile-hint">_</div>
+            <div class="lingo-tile tile-hint">_</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="virtual-keyboard">
+        <div class="kb-row">
+          <button class="key-btn">Q</button>
+          <button class="key-btn">W</button>
+          <button class="key-btn key-correct">E</button>
+          <button class="key-btn key-correct">R</button>
+          <button class="key-btn key-absent">T</button>
+          <button class="key-btn">Y</button>
+          <button class="key-btn">U</button>
+          <button class="key-btn key-correct">I</button>
+          <button class="key-btn">O</button>
+          <button class="key-btn key-absent">P</button>
+        </div>
+        <div class="kb-row">
+          <button class="key-btn">A</button>
+          <button class="key-btn key-correct">S</button>
+          <button class="key-btn">D</button>
+          <button class="key-btn">F</button>
+          <button class="key-btn key-absent">G</button>
+          <button class="key-btn key-correct">H</button>
+          <button class="key-btn">J</button>
+          <button class="key-btn key-correct">K</button>
+          <button class="key-btn">L</button>
+        </div>
+        <div class="kb-row">
+          <button class="key-btn key-wide key-enter">ENTER</button>
+          <button class="key-btn">Z</button>
+          <button class="key-btn">X</button>
+          <button class="key-btn">C</button>
+          <button class="key-btn">V</button>
+          <button class="key-btn">B</button>
+          <button class="key-btn key-absent">N</button>
+          <button class="key-btn">M</button>
+          <button class="key-btn key-wide key-backspace">⌫</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- CONTAINER 3: GRAND FINALE CLUE & STANDINGS -->
+    <main id="view-finale" class="screen-container hidden">
+      <div class="game-meta-bar">
+        <div class="stage-info">
+          <span class="stage-pill">STAGE 3 / 3: GRAND FINALE</span>
+        </div>
+        <div class="timer-pill">🏆 CHAMPION</div>
+      </div>
+
+      <div class="clue-card">
+        <div class="clue-badge">💡 MYSTERY CLUE</div>
+        <div class="clue-text">"The long-term prevailing weather conditions of a geographic region"</div>
+      </div>
+
+      <div class="board-wrapper">
+        <div class="lingo-grid">
+          <div class="lingo-row" style="grid-template-columns: repeat(7, 1fr);">
+            <div class="lingo-tile tile-correct">C</div>
+            <div class="lingo-tile tile-correct">L</div>
+            <div class="lingo-tile tile-correct">I</div>
+            <div class="lingo-tile tile-correct">M</div>
+            <div class="lingo-tile tile-correct">A</div>
+            <div class="lingo-tile tile-correct">T</div>
+            <div class="lingo-tile tile-correct">E</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Victory Standings Card -->
+      <section class="setup-card" style="margin-top: 10px;">
+        <div class="logo-hero" style="margin-bottom: 12px;">
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--lingo-green-dark);">🏆 Match Results</h2>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Congratulations to the Linko Champion!</p>
+        </div>
+
+        <div class="standings-list" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #F0FDF4; border: 1.5px solid #86EFAC; border-radius: 12px; font-weight: 800;">
+            <span>🥇 Alex</span>
+            <span style="color: var(--lingo-green-dark);">1,250 Pts</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--bg-surface); border: 1.5px solid var(--border-light); border-radius: 12px; font-weight: 700; color: var(--text-secondary);">
+            <span>🥈 Sarah</span>
+            <span>850 Pts</span>
+          </div>
+        </div>
+
+        <button type="button" class="primary-btn">Play Again</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view') || 'gameplay';
+    document.getElementById('view-gameplay').classList.toggle('hidden', view !== 'gameplay');
+    document.getElementById('view-multiplayer').classList.toggle('hidden', view !== 'multiplayer');
+    document.getElementById('view-finale').classList.toggle('hidden', view !== 'finale');
+  </script>
+</body>
+</html>
